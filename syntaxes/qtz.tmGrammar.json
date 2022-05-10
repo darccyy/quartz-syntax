@@ -1,0 +1,51 @@
+{
+  "scopeName": "source.qtz",
+  "patterns": [{ "include": "#expression" }],
+  "repository": {
+    "expression": {
+      "patterns": [
+        { "include": "#round" },
+        { "include": "#string" },
+        { "include": "#comment" },
+        { "include": "#operator" }
+      ]
+    },
+    "round": {
+      "begin": "\\(",
+      "end": "\\)",
+      "beginCaptures": {
+        "0": { "name": "punctuation.bracket" }
+      },
+      "endCaptures": {
+        "0": { "name": "punctuation.bracket" }
+      },
+      "name": "expression.group",
+      "patterns": [{ "include": "#expression" }]
+    },
+    "string": {
+      "begin": "\"",
+      "end": "\"",
+      "beginCaptures": {
+        "0": { "name": "punctuation.definition.string" }
+      },
+      "endCaptures": {
+        "0": { "name": "punctuation.definition.string" }
+      },
+      "name": "string",
+      "patterns": [{ "include": "#escape" }]
+    },
+    "escape": {
+      "match": "`.",
+      "name": "constant.character.escape"
+    },
+    "comment": {
+      "begin": "/\\*",
+      "end": "\\*/",
+      "name": "comment"
+    },
+    "operator": {
+      "match": "[=?:+-/*%#&|!^<>]",
+      "name": "keyword.operator"
+    }
+  }
+}
